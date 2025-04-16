@@ -5,7 +5,56 @@ All notable changes to this project will be documented in this file.
 
 The format is based on `Keep a Changelog`_, and this project adheres to `Semantic Versioning`_.
 
-[0.8.0] - XXXX-XX-XX
+
+[0.9.1] - XXXX-XX-XX
+--------------------
+
+**Important:**
+ -  In the near future we will deprecate the `simpleble-c` target in favor of `simplecble`, which will be a drop-in replacement for the existing C bindings.
+
+**Added**
+
+- (Android) Implemented the following API functions:
+  - `Adapter::scan_get_results()`
+  - `Adapter::get_paired_peripherals()`
+  - `Peripheral::rssi()`
+  - `Peripheral::tx_power()`
+  - `Peripheral::is_connectable()`
+  - `Peripheral::is_paired()`
+  - `Peripheral::manufacturer_data()`
+  - `Peripheral::advertised_services()`
+- (Java) Early preview of Java bindings.
+- Configuration class to control the behavior of SimpleBLE internals as well as experimental features.
+- SimpleCBLE: Moved SimpleBLE C bindings into a separate library.
+
+**Changed**
+
+- `Adapter::identifier()` method is non-const, as underlying const conditions can't be guaranteed.
+- (Android) Callback functions are not handled on a separate, dedicated thread.
+- (Windows) **(Experimental)** Calls to the WinRT backend can now be executed in a separate MTA apartment via feature flag.
+
+**Fixed**
+
+- (Android) Some potential race conditions in the Android backend.
+- (Android) Fixed handling of null objects.
+- (Android) `Peripheral::address_type()` and `Peripheral::unpair()` had to be removed due to API level limitations.
+- (Android) Potential duplicate callback invocations on builds with newer Android API levels.
+
+
+
+[0.9.0] - 2025-01-20
+--------------------
+
+**Important: License has changed, please review the new license terms.**
+
+**Changed**
+
+- Removed unnecessary log print in MacOS backend. *(Thanks will-tm!)*
+- Remove builders in favor of templated approach. *(Thanks jcarrano!)*
+- Refactor code to use abstract classes and PIMPL idiom. *(Thanks jcarrano!)*
+
+
+[0.8.1] - 2024-11-05
 --------------------
 
 This version brings a few important changes to the project, so please read the following carefully. The two main

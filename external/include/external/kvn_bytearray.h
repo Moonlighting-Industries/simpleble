@@ -37,6 +37,15 @@ class bytearray {
     bytearray(const uint8_t* ptr, size_t size) : data_(ptr, ptr + size) {}
 
     /**
+     * @brief Constructs byte array from iterators.
+     * @tparam InputIt Iterator type.
+     * @param first Iterator to the first element.
+     * @param last Iterator to one past the last element.
+     */
+    template <typename InputIt>
+    bytearray(InputIt first, InputIt last) : data_(first, last) {}
+
+    /**
      * @brief Constructs byte array from a std::string.
      * @param byteArr A string containing byte data.
      */
@@ -54,6 +63,12 @@ class bytearray {
      * @param byteArr A C-style string.
      */
     bytearray(const char* byteArr) : bytearray(std::string(byteArr)) {}
+
+    /**
+     * @brief Constructs a byte array of specified size, initialized with zeros.
+     * @param size The number of bytes to allocate.
+     */
+    explicit bytearray(size_t size) : data_(size) {}
 
     /**
      * @brief Constructs byte array from an initializer list of uint8_t.
@@ -184,10 +199,17 @@ class bytearray {
      */
     operator std::string() const { return std::string(data_.begin(), data_.end()); }
 
+    /**
+     * @brief Conversion operator to convert byte array to std::vector<uint8_t>.
+     * @return Vector containing the raw bytes of the byte array
+     */
+    operator std::vector<uint8_t>() const { return data_; }
+
     //! @cond Doxygen_Suppress
     // Expose vector-like functionality
     size_t size() const { return data_.size(); }
     const uint8_t* data() const { return data_.data(); }
+    uint8_t* data() { return data_.data(); }
     bool empty() const { return data_.empty(); }
     void clear() { data_.clear(); }
     uint8_t& operator[](size_t index) { return data_[index]; }

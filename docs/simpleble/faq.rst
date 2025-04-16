@@ -5,6 +5,12 @@ FAQ
 Right now, the best way to have your questions answered is on our `Discord`_ server.
 More information will be made available here soon.
 
+**What platforms are supported by SimpleBLE?**
+SimpleBLE supports Windows 10+, Linux (Ubuntu 20.04+ and other distros using Bluez),
+MacOS 10.15+ (Catalina and newer), iOS 15.0+, and Android API 31+.
+
+Please check the overview page on more information about platform-specific limitations.
+
 **Why do I get UUIDs for the peripheral address on MacOS?**
 
 MacOS has a policy of not allowing applications to access the Bluetooth address of
