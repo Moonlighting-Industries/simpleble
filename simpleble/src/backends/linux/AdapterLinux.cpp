@@ -130,6 +130,7 @@ void AdapterLinux::create_service(const ServiceData& service_data) {
         }
         custom_characteristics_.push_back(characteristic);
     }
+    custom_services_.push_back(service0);
 
     // Register the services and characteristics
     adapter_->register_application(custom_service_manager_->path());
@@ -159,6 +160,13 @@ void AdapterLinux::create_advertisement(const AdvertisementData& advertisement_d
     custom_advertisement_->timeout(0);
     custom_advertisement_->discoverable(true);
     custom_advertisement_->local_name(advertisement_data.name);
+
+    std::vector<std::string> suuids = {};
+    suuids.reserve(custom_services_.size());
+    for (auto& service: custom_services_) {
+        suuids.push_back(service->uuid());
+    }
+    custom_advertisement_->service_uuids(suuids);
 }
 
 void AdapterLinux::start_advertisement() {

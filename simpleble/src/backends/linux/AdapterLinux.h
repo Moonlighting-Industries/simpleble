@@ -58,6 +58,7 @@ class AdapterLinux : public SimpleBLE::AdapterBase {
     std::shared_ptr<SimpleBluez::CustomAdvertisementManager> custom_advertisement_manager_;
     std::shared_ptr<SimpleBluez::CustomAdvertisement> custom_advertisement_;
     std::vector<std::shared_ptr<SimpleBluez::CustomCharacteristic>> custom_characteristics_;
+    std::vector<std::shared_ptr<SimpleBluez::CustomService>> custom_services_;
 
     std::atomic_bool is_scanning_;
 
